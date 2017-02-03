@@ -5,7 +5,7 @@
 // Copyright   		: Your copyright notice
 // Description 		: Hello World in C++, Ansi-style
 // Acknowledgment	: http://stackoverflow.com/questions/14818084/what-is-the-proper-include-for-the-function-sleep-in-c \
-//					  http://stackoverflow.com/questions/38430267/sleep-in-infinite-while-loop-not-printing-value-if-not-ended-with-n
+//			  http://stackoverflow.com/questions/38430267/sleep-in-infinite-while-loop-not-printing-value-if-not-ended-with-n
 //============================================================================
 
 #include <iostream>
