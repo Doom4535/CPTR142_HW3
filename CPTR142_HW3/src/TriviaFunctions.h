@@ -19,8 +19,11 @@ int startSession(void);
 
 int loadQuestions(std::vector <Trivia> &question_list);
 
+void questionCheck(std::vector <Trivia> &question_list);
+
 //int askQuestion(std::vector <Trivia> &question_list, int &current_num, std::vector <User> &players, int player_num);
-int askQuestion(std::vector <Trivia> &question_list, int &current_num, std::vector <User> &players, const int &player_num);
+int askQuestion(std::vector <Trivia> &question_list,const int &current_num, std::vector <User> &players, const int &player_num);
+
 int createUsers(std::vector <User> &players);
 
 int selectUser(std::vector <User> &players, int &player_number);

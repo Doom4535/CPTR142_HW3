@@ -22,6 +22,7 @@ int triviaGame(void){
 	std::vector <User> players;
 	createUsers(players);
 	loadQuestions(current_session);
+	randomizeQ(current_session); // shuffling the questions
 	setSessionCount(max_count);
 	int count = 0;
 	while(count < max_count){
@@ -30,8 +31,9 @@ int triviaGame(void){
 			std::cout << std::endl;	// Adding in an extra space
 			//askQuestion(current_session, k, players, b);
 			askQuestion(current_session, k, players, b);
+			k++;	//incrementing to the next question
 			std::cout << std::endl; // adding in an extra space for readability
-			if(k > current_session.size()){ // checking to see if we have reached the end of the question pool
+			if(k >= current_session.size()){ // checking to see if we have reached the end of the question pool
 				randomizeQ(current_session); // shuffling the questions
 				k = 0; // resetting the question counter/incrementer
 			}

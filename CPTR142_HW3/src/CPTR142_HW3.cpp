@@ -47,6 +47,7 @@ int main() {
 		fflush(stdout);
 	}
 	std::cout << std::endl;
+	fflush(stdin);
 	while(playing){
 		triviaGame();
 		sleep(1);
