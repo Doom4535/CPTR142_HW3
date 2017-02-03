@@ -8,6 +8,8 @@
 #include <iostream>
 #include "User.h"
 
+// User object component definitions
+
 int User::playerID = 0;
 
 User::User(std::string n){

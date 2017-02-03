@@ -4,23 +4,23 @@
 // Version     		:
 // Copyright   		: Your copyright notice
 // Description 		: Hello World in C++, Ansi-style
-// Acknowledgment	: http://stackoverflow.com/questions/14818084/what-is-the-proper-include-for-the-function-sleep-in-c \
-//			  http://stackoverflow.com/questions/38430267/sleep-in-infinite-while-loop-not-printing-value-if-not-ended-with-n
 //============================================================================
 
 #include <iostream>
-#include "Trivia-routine.h"
+//#include "Trivia-routine.h"
+#include "TriviaGame.h"
 #include <unistd.h>
 #include <string>
 
+/*! General system control routine */
 int main() {
 	std::cout << "!!!Hello World!!!" << std::endl; // prints !!!Hello World!!!
 	std::cout << "Loading SkyNet";
 	int loading = 15;
 	for(int i = 0; i < loading; i++){
-		sleep(1);
+		sleep(1); // waiting a second betwen each '.'
 		std::cout << ".";
-		fflush(stdout);
+		fflush(stdout);	// flushing so that the screen displays the loading '.'s
 	}
 	std::cout << std::endl;
 	std::cout << "Conquering the World";

@@ -5,6 +5,33 @@
  *      Author: aaron
  */
 
+
+/*!	UML Diagram
+ * 		class User
+ * 			private
+ * 				ID#
+ * 				name
+ * 				PortOfCall (home, ect.)
+ * 				score
+ * 				teamID
+ * 				team name
+ *
+ * 			public
+ * 				User()
+ * 				getID
+ * 				setID
+ * 				getName
+ * 				setName
+ * 				getPoC (used to get the Port of Call)
+ * 				getScore
+ * 				clearScore
+ * 				addPoints
+ * 				getTeamID
+ * 				setTeamID
+ * 				getTeam (team name)
+ * 				setTeam (set team name)
+ */
+
 #ifndef USER_H_
 #define USER_H_
 

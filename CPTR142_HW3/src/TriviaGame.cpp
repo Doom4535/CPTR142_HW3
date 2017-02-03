@@ -1,25 +1,56 @@
 /*
- * TriviaFunctions.cpp
+ * TriviaGame.cpp
  *
- *  Created on		: Feb 2, 2017
- *  Author			: aaron
- *  Acknowledgments	: http://trivia.fyi/ \
- *  				  http://stackoverflow.com/questions/5655142/how-to-check-if-input-is-numeric-in-c \
- *  				  http://stackoverflow.com/questions/38430267/sleep-in-infinite-while-loop-not-printing-value-if-not-ended-with-n \
- *  				  http://stackoverflow.com/questions/4442477/remove-ith-item-from-a-c-stdvector
+ *  Created on: Feb 3, 2017
+ *      Author: aaron.covrig
  */
 
+#include <iostream>
 #include <vector>
 #include <string>
-#include <iostream>
 
 #include <stdlib.h>
 #include <time.h>
-#include "TriviaFunctions.h"
 #include "Trivia.h"
 #include "User.h"
 #include <unistd.h>
+#include "TriviaGame.h"
 
+// Trivia Game function calls
+
+
+int triviaGame(void){
+	int k = 0; // used to know which question to ask next
+	int max_count = 1;
+	std::vector <Trivia> current_session;
+	std::vector <User> players;
+	createUsers(players);
+	loadQuestions(current_session);
+	randomizeQ(current_session); // shuffling the questions
+	setSessionCount(max_count);
+	int count = 0;
+	while(count < max_count){
+		for(unsigned int b = 0; b < players.size(); b++){
+			selectUser(players, b);
+			std::cout << std::endl;	// Adding in an extra space
+			//askQuestion(current_session, k, players, b);
+			askQuestion(current_session, k, players, b);
+			k++;	//incrementing to the next question
+			std::cout << std::endl; // adding in an extra space for readability
+			if(k >= current_session.size()){ // checking to see if we have reached the end of the question pool
+				randomizeQ(current_session); // shuffling the questions
+				k = 0; // resetting the question counter/incrementer
+			}
+		}
+		count++;
+	}
+	GameOver(players);
+
+
+	return(0);
+}
+
+/*! Randomizing order of questions */
 int randomizeQ(std::vector <Trivia> &question_list){
 	int status = 1;
 	srand (time(NULL)); // initialize seed
@@ -31,7 +62,7 @@ int randomizeQ(std::vector <Trivia> &question_list){
 	// Shuffling components
 	for(int i = 0;  i < size; i++){
 		//int swap_Q = rand() size + 1;
-		int swap_Q = rand() & size -1;
+		int swap_Q = rand() & (size -1);
 		temp = question_list[i];
 		question_list[i] = question_list[swap_Q];
 		question_list[swap_Q] = temp;
@@ -43,6 +74,7 @@ int randomizeQ(std::vector <Trivia> &question_list){
 	return(status);
 }
 
+/*! Loading questions */
 int loadQuestions(std::vector <Trivia> &question_list){
 	int status = 1;
 	//question_list.pop_back(); // removing mysterious first element
@@ -89,6 +121,7 @@ int loadQuestions(std::vector <Trivia> &question_list){
 	Trivia q20("In what type of restaurant would you typically find the condiment wasabi?", "Japanese", 150);
 	question_list.push_back(q20);
 
+	/*! Verifying questions */
 	questionCheck(question_list);
 
 	status = 0;
@@ -100,7 +133,7 @@ int loadQuestions(std::vector <Trivia> &question_list){
  *  is to be blank.
  */
 void questionCheck(std::vector <Trivia> &question_list){
-	for(int i = 0; i < question_list.size(); i++){
+	for(unsigned int i = 0; i < question_list.size(); i++){
 		bool erase = false;
 		if(question_list[i].getValue() == 0){
 			std::cout << "Error in value field discoverd in element: " << i << std::endl;
@@ -145,6 +178,7 @@ int askQuestion(std::vector <Trivia> &question_list, const int &current_num, std
 	return(status);
 }
 
+/* Creating the users */
 int createUsers(std::vector <User> &player){
 	int status = 1;
 	bool loop = true;
@@ -169,13 +203,15 @@ int createUsers(std::vector <User> &player){
 	return(status);
 }
 
-int selectUser(std::vector <User> &players, int &player_number){
+/*! Choosing the next user */
+int selectUser(std::vector <User> &players, unsigned int &player_number){
 	int status = 1;
 	std::cout << "It is " << players[player_number].getName() << "'s turn";
 	status = 0;
 	return(status);
 }
 
+/*! Enterying the number of questions to be answered by each user */
 void setSessionCount(int &count){
 	count = 1;
 	std::cout << "Please enter how many sessions you would like (how many questions will each person answer?)?: ";
@@ -189,11 +225,12 @@ void setSessionCount(int &count){
 	std::cin.ignore();
 }
 
+/*! Find the user with the most points or set tie to true if all tied */
 void pointsLeader(std::vector <User> &players, User &leader, bool &tie){
 	tie = false;
 	int highScore = 0;
 	int leader_num = -1;
-	for(int i = 0; i < players.size(); i++){
+	for(unsigned int i = 0; i < players.size(); i++){
 		int present_score = players[i].getScore();
 		if(present_score > highScore){
 			highScore = present_score;
@@ -207,6 +244,8 @@ void pointsLeader(std::vector <User> &players, User &leader, bool &tie){
 		tie = true;
 	}
 }
+
+/*! Finishing the game and outputing the ending stuff */
 void GameOver(std::vector <User> &players){
 	User winner("The Awesome One");
 	bool tie = false;
@@ -227,3 +266,5 @@ void GameOver(std::vector <User> &players){
 	std::cout << "----------------------------------------------------------------------------------" << std::endl;
 	std::cout << "----------------------------------------------------------------------------------" << std::endl;
 }
+
+

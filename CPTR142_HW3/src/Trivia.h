@@ -8,6 +8,21 @@
 #ifndef TRIVIA_H_
 #define TRIVIA_H_
 
+/*! UML Diagram:
+ * 		class Trivia
+ * 			private
+ * 				Question
+ * 				Answer
+ * 				value
+ *
+ * 			public
+ * 				Trivia()
+ * 				getQuestion
+ * 				getAnswer
+ * 				getValue
+ *
+ */
+
 #include <string>
 
 class Trivia{

@@ -9,6 +9,8 @@
 
 #include "Trivia.h"
 
+// Declairations of trivia class functions
+
 Trivia::Trivia(std::string Q, std::string A, int v){
 	Question = Q;
 	Answer = A;
