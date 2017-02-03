@@ -4,10 +4,8 @@ Date: Feb. 2, 2017
 Purpose of Program: Trivia Game
 Includes: CPTR142_HW3.cpp \
 	  Trivia.cpp \
-	  TriviaFunctions.cpp \
-	  TriviaFunctions.h \
-	  Trivia-routine.cpp \
-	  Trivia-routine.h \
+	  TriviaGame.cpp \
+	  TriviaGame.h \
 	  User.cpp \
 	  User.h
 
